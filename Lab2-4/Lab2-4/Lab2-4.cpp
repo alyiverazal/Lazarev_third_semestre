@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Lab2-4.h"
+#include <fstream>
 
 //std::cout << "" << "\n";
 //std::cin >> ;
@@ -61,18 +62,42 @@ int main()
     int i = 1;
     
     while (i = 1) { //если поставить == при входе в цикл компилятор начнет бесконечно выводить первую строку
-        std::cout << "Pirnt 'AddPipe' if you want to add pipe" << "\n";
-        std::cout << "Print 'AddCompStation' if you want to add Compression station" << "\n";
-        std::cout << "Print 'VAO' if you want to see all objects" << "\n";
-        std::cout << "Print 'ChangePipe' if you want to change pipe" << "\n";
-        std::cout << "" << "\n";
-        std::cout << "" << "\n";
-        std::cout << "" << "\n";
+        std::cout << "Pirnt 'Add_Pipe' if you want to add pipe" << "\n";
+        std::cout << "Print 'Add_Comp_Station' if you want to add Compression station" << "\n";
+        std::cout << "Print 'SAO' if you want to see all objects" << "\n";
+        std::cout << "Print 'Change_Pipe' if you want to change pipe" << "\n";
+        std::cout << "Print 'Change_Comp_Station' if you want to change pipe" << "\n";
+        std::cout << "Print 'Save' if you want to save" << "\n";
+        std::cout << "Print 'Upload' if you want to upload" << "\n";
+        std::cout << "Print 'Exit' if you want to exit" << "\n";
         std::cin >> InputW;
         if (InputW == "AddPipe") {
 
         }
+        if (InputW == "Add_Comp_Station") {
 
+        }
+        if (InputW == "SAO") {
+
+        }
+        if (InputW == "Change_Pipe") {
+
+        }
+        if (InputW == "Change_Comp_Station") {
+
+        }
+        if (InputW == "Save") {
+            std::ofstream out;          // поток для записи
+            out.open("C:\\Users\\ilya-\\Documents\\GitHub\\Pipes\\Gas_Pipes.txt");
+            if (out.is_open())
+            {
+                out << "Hello World!" << std::endl;
+            }
+        }
+        if (InputW == "Upload") {
+            std::string s;
+            std::string file;
+        }
 
 
         if (InputW == "Exit") break;
