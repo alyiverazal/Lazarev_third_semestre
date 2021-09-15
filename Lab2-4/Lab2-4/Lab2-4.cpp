@@ -102,7 +102,7 @@ int main()
             std::cout << "Condition of pipe was change" << s << "\n";
         }
         if (InputW == "5") {
-            std::cout << Station.working_workshops << " workshop(s) is(are) working now and you can start " << Station.stopped_workshops << "\n" << "How much workshops do you want to start?" << "\n";
+            std::cout << Station.working_workshops << " workshop(s) is(are) working now, so you can start " << Station.stopped_workshops << "\n" << "How much workshops do you want to start?" << "\n";
             std::cin >> StartW;
             while (StartW > (Station.number_of_workshops - Station.working_workshops) || StartW < 0) {
                 std::cout << "Plz write a right number" << "\n";
@@ -110,10 +110,10 @@ int main()
             }
             Station.working_workshops = Station.working_workshops + StartW;
             Station.stopped_workshops = Station.stopped_workshops - StartW;
-            std::cout << Station.working_workshops << " workshop(s) is(are) working now and " << Station.stopped_workshops << "workshop(s) was(were) stopped" << "\n";
+            std::cout << Station.working_workshops << " workshop(s) is(are) working now and " << Station.stopped_workshops << " workshop(s) was(were) stopped" << "\n";
         }
         if (InputW == "6") {
-            std::cout << Station.stopped_workshops << " workshop(s) was(were) stopped and you can stop" << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
+            std::cout << Station.stopped_workshops << " workshop(s) was(were) stopped, so you can stop " << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
             std::cin >> StopW;
             while (StopW > (Station.number_of_workshops - Station.stopped_workshops) || StopW < 0) {
                 std::cout << "Plz write a right number" << "\n";
@@ -121,7 +121,7 @@ int main()
             }
             Station.stopped_workshops = Station.stopped_workshops + StopW;
             Station.working_workshops = Station.working_workshops - StopW;
-            std::cout << Station.stopped_workshops << " workshop(s) was(were) stopped and " << Station.working_workshops << "workshop(s) is(are) working now" << "\n";
+            std::cout << Station.stopped_workshops << " workshop(s) was(were) stopped and " << Station.working_workshops << " workshop(s) is(are) working now" << "\n";
             
         }
         if (InputW == "7") {
@@ -129,7 +129,18 @@ int main()
             out.open("C:\\Users\\ilya-\\Documents\\GitHub\\Pipes\\Gas_Pipes.txt");
             if (out.is_open())
             {
-                out << "Hello World!" << "\n";
+
+                out << "station's id: " << Station.id << "\n";
+                out << "station's name: " << Station.name << "\n";
+                out << "station's number of workshops: " << Station.number_of_workshops << "\n";
+                out << "station's performance: " << Station.performance << "\n";
+                out << "station's working workshops: " << Station.working_workshops << "\n";
+                Station.stopped_workshops = Station.number_of_workshops - Station.working_workshops;
+                out << "station's stopped workshops: " << Station.stopped_workshops << "\n";
+                out << "pipe's id " << My_Pipe.id << "\n";
+                out << "pipe's length " << My_Pipe.length << "\n";
+                out << "pipe's width " << My_Pipe.width << "\n";
+                out << "pipes under repair: " << My_Pipe.under_repair << "\n";
             }
             std::cout << "Pipes and Comp_Stations were save" << "\n";
         }
