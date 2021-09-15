@@ -8,7 +8,7 @@ struct Pipe {
 };
 struct Comp_Station {
     int id;
-    char name;
+    std::string name;
     int number_of_workshops;
     int working_workshops;
     int stopped_workshops;

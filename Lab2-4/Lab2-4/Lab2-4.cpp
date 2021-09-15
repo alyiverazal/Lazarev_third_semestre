@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Lab2-4.h"
 #include <fstream>
+#include <string>
 
 //std::cout << "" << "\n";
 //std::cin >> ;
@@ -30,9 +31,9 @@ void InputStation(Comp_Station& Station)
 {
     std::cout << "Enter what name of Station do you want:" << "\n";
     std::cin >> Station.name;
-    std::cout << "Enter what number_of_workshops of Station do you want:" << "\n";
+    std::cout << "Enter how much workshops do you want for compression station:" << "\n";
     std::cin >> Station.number_of_workshops;
-    std::cout << "Enter what working_workshops of Station do you want:" << "\n";
+    std::cout << "Enter how much workshops are working:" << "\n";
     std::cin >> Station.working_workshops;
     std::cout << "Enter what performance of Station do you want:" << "\n";
     std::cin >> Station.performance;
@@ -46,7 +47,7 @@ void OutputStation(Comp_Station& Station)
     std::cout << "station's performance: " << Station.performance << "\n";
     std::cout << "station's working workshops: " << Station.working_workshops << "\n";
     Station.stopped_workshops = Station.number_of_workshops - Station.working_workshops;
-    std::cout << "station's working workshops: " << Station.stopped_workshops << "\n";
+    std::cout << "station's stopped workshops: " << Station.stopped_workshops << "\n";
 }
 
 int main()
@@ -58,10 +59,9 @@ int main()
     Comp_Station Station;
     Station.id = 0;
 
-    std::string InputW;
+    std::string InputW; //команда меню
     std::string s;
 
-    int i = 1;
     int StartW;     //запуск доп воркшопс
     int StopW;      //остановка части воркшопс
 
@@ -70,27 +70,27 @@ int main()
     InputStation(Station);
     OutputStation(Station);
     
-    while (i = 1) { //если поставить '==' при входе в цикл компилятор начнет бесконечно выводить строки
-        std::cout << "Pirnt 'Add_Pipe' if you want to add pipe" << "\n";
-        std::cout << "Print 'Add_Comp_Station' if you want to add Compression station" << "\n";
-        std::cout << "Print 'SAO' if you want to see all objects" << "\n";
-        std::cout << "Print 'Change_Pipe_Condition' if you want to change pipe" << "\n";
-        std::cout << "Print 'Start workshop(s)' if you want to start some workshops" << "\n";
-        std::cout << "Print 'Stop workshop(s)' if you want to stop some workshops" << "\n";
-        std::cout << "Print 'Save' if you want to save" << "\n";
-        std::cout << "Print 'Upload' if you want to upload" << "\n";
-        std::cout << "Print 'Exit' if you want to exit" << "\n";
+    while (1) {
+        std::cout << "Pirnt '1' if you want to add pipe" << "\n";
+        std::cout << "Print '2' if you want to add compression station" << "\n";
+        std::cout << "Print '3' if you want to see all objects" << "\n";
+        std::cout << "Print '4' if you want to change pipe" << "\n";
+        std::cout << "Print '5' if you want to start some workshops" << "\n";
+        std::cout << "Print '6' if you want to stop some workshops" << "\n";
+        std::cout << "Print '7' if you want to save" << "\n";
+        std::cout << "Print '8' if you want to upload" << "\n";
+        std::cout << "Print '9' if you want to exit" << "\n";
         std::cin >> InputW;
-        if (InputW == "AddPipe") {
+        if (InputW == "1") {
             
         }
-        if (InputW == "Add_Comp_Station") {
+        if (InputW == "2") {
 
         }
-        if (InputW == "SAO") {
+        if (InputW == "3") {
 
         }
-        if (InputW == "Change_Pipe_Condition") {
+        if (InputW == "4") {
             if (My_Pipe.under_repair == false) {
                 My_Pipe.under_repair = true;
                 s = "under_repair";
@@ -101,7 +101,7 @@ int main()
             }
             std::cout << "Condition of pipe was change" << s << "\n";
         }
-        if (InputW == "Start workshop(s)") {
+        if (InputW == "5") {
             std::cout << Station.working_workshops << " workshop(s) is(are) working now and you can start " << Station.stopped_workshops << "\n" << "How much workshops do you want to start?" << "\n";
             std::cin >> StartW;
             while (StartW > (Station.number_of_workshops - Station.working_workshops) || StartW < 0) {
@@ -112,7 +112,7 @@ int main()
             Station.stopped_workshops = Station.stopped_workshops - StartW;
             std::cout << Station.working_workshops << " workshop(s) is(are) working now and " << Station.stopped_workshops << "workshop(s) was(were) stopped" << "\n";
         }
-        if (InputW == "Stop workshops(s)") {
+        if (InputW == "6") {
             std::cout << Station.stopped_workshops << " workshop(s) was(were) stopped and you can stop" << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
             std::cin >> StopW;
             while (StopW > (Station.number_of_workshops - Station.stopped_workshops) || StopW < 0) {
@@ -124,7 +124,7 @@ int main()
             std::cout << Station.stopped_workshops << " workshop(s) was(were) stopped and " << Station.working_workshops << "workshop(s) is(are) working now" << "\n";
             
         }
-        if (InputW == "Save") {
+        if (InputW == "7") {
             std::ofstream out;          // поток для записи
             out.open("C:\\Users\\ilya-\\Documents\\GitHub\\Pipes\\Gas_Pipes.txt");
             if (out.is_open())
@@ -133,21 +133,21 @@ int main()
             }
             std::cout << "Pipes and Comp_Stations were save" << "\n";
         }
-        if (InputW == "Upload") {
+        if (InputW == "8") {
             std::string line;
 
             std::ifstream in("C:\\Users\\ilya-\\Documents\\GitHub\\Pipes\\Gas_Pipes.txt"); // поток для чтения
             if (in.is_open())
             {
-                //while (std::basic_istream::getline(in, line)) {
-                  //  std::cout << line << "\n";
-                //}
+                while (getline(in, line)) {
+                    std::cout << line << "\n";
+                }
             }
             in.close();
         }
 
 
-        if (InputW == "Exit") break;
+        if (InputW == "9") return 0;
     }
     return 0;
 
