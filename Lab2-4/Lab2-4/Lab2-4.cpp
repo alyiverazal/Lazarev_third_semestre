@@ -20,7 +20,7 @@ void InputPipe(Pipe& My_Pipe)
 
 void OutputPipe(Pipe& My_Pipe)
 {
-    std::cout << "pipe's id" << My_Pipe.id << "\n";
+    std::cout << "pipe's id " << My_Pipe.id << "\n";
     std::cout << "pipe's length " << My_Pipe.length << "\n";
     std::cout << "pipe's width " << My_Pipe.width << "\n";
     std::cout << "Pipes under repair: " << My_Pipe.under_repair << "\n";
@@ -43,8 +43,10 @@ void OutputStation(Comp_Station& Station)
     std::cout << "station's id: " << Station.id << "\n";
     std::cout << "station's name: " << Station.name << "\n";
     std::cout << "station's number of workshops: " << Station.number_of_workshops << "\n";
-    std::cout << "station's performance " << Station.performance << "\n";
-    std::cout << "station's working workshops " << Station.working_workshops << "\n";
+    std::cout << "station's performance: " << Station.performance << "\n";
+    std::cout << "station's working workshops: " << Station.working_workshops << "\n";
+    Station.stopped_workshops = Station.number_of_workshops - Station.working_workshops;
+    std::cout << "station's working workshops: " << Station.stopped_workshops << "\n";
 }
 
 int main()
@@ -52,27 +54,35 @@ int main()
     Pipe My_Pipe;
     My_Pipe.id = 0;
     My_Pipe.under_repair = false;
+
     Comp_Station Station;
     Station.id = 0;
+
+    std::string InputW;
+    std::string s;
+
+    int i = 1;
+    int StartW;     //запуск доп воркшопс
+    int StopW;      //остановка части воркшопс
+
     InputPipe(My_Pipe);
     OutputPipe(My_Pipe);
     InputStation(Station);
     OutputStation(Station);
-    std::string InputW;
-    int i = 1;
     
-    while (i = 1) { //если поставить == при входе в цикл компилятор начнет бесконечно выводить первую строку
+    while (i = 1) { //если поставить '==' при входе в цикл компилятор начнет бесконечно выводить строки
         std::cout << "Pirnt 'Add_Pipe' if you want to add pipe" << "\n";
         std::cout << "Print 'Add_Comp_Station' if you want to add Compression station" << "\n";
         std::cout << "Print 'SAO' if you want to see all objects" << "\n";
-        std::cout << "Print 'Change_Pipe' if you want to change pipe" << "\n";
-        std::cout << "Print 'Change_Comp_Station' if you want to change pipe" << "\n";
+        std::cout << "Print 'Change_Pipe_Condition' if you want to change pipe" << "\n";
+        std::cout << "Print 'Start workshop(s)' if you want to start some workshops" << "\n";
+        std::cout << "Print 'Stop workshop(s)' if you want to stop some workshops" << "\n";
         std::cout << "Print 'Save' if you want to save" << "\n";
         std::cout << "Print 'Upload' if you want to upload" << "\n";
         std::cout << "Print 'Exit' if you want to exit" << "\n";
         std::cin >> InputW;
         if (InputW == "AddPipe") {
-
+            
         }
         if (InputW == "Add_Comp_Station") {
 
@@ -80,23 +90,60 @@ int main()
         if (InputW == "SAO") {
 
         }
-        if (InputW == "Change_Pipe") {
-
+        if (InputW == "Change_Pipe_Condition") {
+            if (My_Pipe.under_repair == false) {
+                My_Pipe.under_repair = true;
+                s = "under_repair";
+            }
+            else {
+                My_Pipe.under_repair = false;
+                s = "is_working";
+            }
+            std::cout << "Condition of pipe was change" << s << "\n";
         }
-        if (InputW == "Change_Comp_Station") {
-
+        if (InputW == "Start workshop(s)") {
+            std::cout << Station.working_workshops << " workshop(s) is(are) working now and you can start " << Station.stopped_workshops << "\n" << "How much workshops do you want to start?" << "\n";
+            std::cin >> StartW;
+            while (StartW > (Station.number_of_workshops - Station.working_workshops) || StartW < 0) {
+                std::cout << "Plz write a right number" << "\n";
+                std::cin >> StartW;
+            }
+            Station.working_workshops = Station.working_workshops + StartW;
+            Station.stopped_workshops = Station.stopped_workshops - StartW;
+            std::cout << Station.working_workshops << " workshop(s) is(are) working now and " << Station.stopped_workshops << "workshop(s) was(were) stopped" << "\n";
+        }
+        if (InputW == "Stop workshops(s)") {
+            std::cout << Station.stopped_workshops << " workshop(s) was(were) stopped and you can stop" << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
+            std::cin >> StopW;
+            while (StopW > (Station.number_of_workshops - Station.stopped_workshops) || StopW < 0) {
+                std::cout << "Plz write a right number" << "\n";
+                std::cin >> StopW;
+            }
+            Station.stopped_workshops = Station.stopped_workshops + StopW;
+            Station.working_workshops = Station.working_workshops - StopW;
+            std::cout << Station.stopped_workshops << " workshop(s) was(were) stopped and " << Station.working_workshops << "workshop(s) is(are) working now" << "\n";
+            
         }
         if (InputW == "Save") {
             std::ofstream out;          // поток для записи
             out.open("C:\\Users\\ilya-\\Documents\\GitHub\\Pipes\\Gas_Pipes.txt");
             if (out.is_open())
             {
-                out << "Hello World!" << std::endl;
+                out << "Hello World!" << "\n";
             }
+            std::cout << "Pipes and Comp_Stations were save" << "\n";
         }
         if (InputW == "Upload") {
-            std::string s;
-            std::string file;
+            std::string line;
+
+            std::ifstream in("C:\\Users\\ilya-\\Documents\\GitHub\\Pipes\\Gas_Pipes.txt"); // поток для чтения
+            if (in.is_open())
+            {
+                //while (std::basic_istream::getline(in, line)) {
+                  //  std::cout << line << "\n";
+                //}
+            }
+            in.close();
         }
 
 

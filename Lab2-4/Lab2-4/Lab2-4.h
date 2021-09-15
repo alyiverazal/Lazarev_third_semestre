@@ -11,6 +11,7 @@ struct Comp_Station {
     char name;
     int number_of_workshops;
     int working_workshops;
+    int stopped_workshops;
     int performance;
 };
 void OutputPipe(Pipe& My_Pipe);
