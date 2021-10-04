@@ -135,7 +135,9 @@ int main()
                 out << "station's number of workshops: " << Station.number_of_workshops << "\n";
                 out << "station's performance: " << Station.performance << "\n";
                 out << "station's working workshops: " << Station.working_workshops << "\n";
+
                 Station.stopped_workshops = Station.number_of_workshops - Station.working_workshops;
+
                 out << "station's stopped workshops: " << Station.stopped_workshops << "\n";
                 out << "pipe's id " << My_Pipe.id << "\n";
                 out << "pipe's length " << My_Pipe.length << "\n";
@@ -156,12 +158,9 @@ int main()
             }
             in.close();
         }
-
-
         if (InputW == "9") return 0;
     }
     return 0;
-
 }
 
 
