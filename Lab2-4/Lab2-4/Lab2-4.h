@@ -11,13 +11,24 @@ struct Comp_Station {
     std::string name;
     int number_of_workshops;
     int working_workshops;
-    int stopped_workshops;
     int performance;
 };
-void OutputPipe(Pipe& My_Pipe);
+void OutputPipe(Pipe My_Pipe);
 
 void InputPipe(Pipe& My_Pipe);
 
 void InputStation(Comp_Station& Station);
 
 void OutputStation(Comp_Station& Station);
+
+void f(std::string& InputW);
+
+void f8();
+
+void f7(Comp_Station& Station, Pipe& My_Pipe);
+
+void f6(Comp_Station& Station, int& StopW);
+
+void f5(Comp_Station& Station, int& StartW);
+
+void f4(Pipe& My_Pipe, std::string& s);
