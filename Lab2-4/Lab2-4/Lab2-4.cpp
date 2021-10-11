@@ -10,17 +10,48 @@
 //std::cin >> ;
 
 
-
-void AddLength(Pipe& My_Pipe)
+int AddLength(Pipe& My_Pipe)
 {
-    std::cout << "Print length:" << "\n";
-    std::cin >> My_Pipe.length;
+    while (true)
+    {
+        std::cout << "Print length:" << "\n";
+        std::cin >> My_Pipe.length;
+
+        if (std::cin.fail()) // если предыдущее извлечение оказалось неудачным,
+        {
+            std::cin.clear(); // то очищаем cin
+            std::cin.ignore(32767, '\n'); // и удаляем значения предыдущего ввода из входного буфера
+            std::cout << "Oops, that input is invalid.  Please try again.\n";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n'); // удаляем лишние значения
+
+            return My_Pipe.length;
+        }
+    }
 }
 
-void AddWidth(Pipe& My_Pipe)
+double AddWidth(Pipe& My_Pipe)
 {
-    std::cout << "Print width" << "\n";
-    std::cin >> My_Pipe.width;
+    while (true)
+    {
+        std::cout << "Print width" << "\n";
+        std::cin >> My_Pipe.width;
+
+        if (std::cin.fail()) 
+        {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Oops, that input is invalid.  Please try again.\n";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n');
+
+            return My_Pipe.width;
+        }
+    }
 }
 
 void OutputPipe(const Pipe& My_Pipe)
@@ -38,19 +69,67 @@ void NameStation(Comp_Station& Station)
     std::cin >> Station.name;
 }
 
-void AllWorkshops(Comp_Station& Station)
+int AllWorkshops(Comp_Station& Station)
 {
-    std::cin >> Station.number_of_workshops;
+    while (true) 
+    {
+        std::cin >> Station.number_of_workshops;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n'); 
+            std::cout << "Oops, that input is invalid.  Please try again.\n";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n');
+
+            return Station.number_of_workshops;
+        }
+    }
 }
 
-void WorkingWorkshops(Comp_Station& Station)
+int WorkingWorkshops(Comp_Station& Station)
 {
-    std::cin >> Station.working_workshops;
+    while (true) 
+    {
+        std::cin >> Station.working_workshops;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear(); 
+            std::cin.ignore(32767, '\n');
+            std::cout << "Oops, that input is invalid.  Please try again.\n";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n');
+
+            return Station.working_workshops;
+        }
+    }
 }
 
-void Performance(Comp_Station& Station)
+int Performance(Comp_Station& Station)
 {
-    std::cin >> Station.performance;
+    while (true)
+    {
+        std::cin >> Station.performance;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Oops, that input is invalid.  Please try again.\n";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n');
+
+            return Station.performance;
+        }
+    }
 }
 
 void OutputStation(const Comp_Station& Station)
@@ -65,18 +144,8 @@ void OutputStation(const Comp_Station& Station)
 
 
 
-void menu(std::string& InputW)
+int menu1(int& InputW)
 {
-    std::cout << "Print 'lp' to change length of pipe: " << "\n";
-    std::cout << "Print 'wp' to change width of pipe:" << "\n";
-    std::cout << "Print 'allp' to see all info about pipe" << "\n";
-
-    std::cout << "Print 'as' to add name of station:" << "\n";
-    std::cout << "Print 'aw' to add how much worshops exists:" << "\n";
-    std::cout << "Print 'ww' to add how much workshops are working:" << "\n";
-    std::cout << "Print 'p' to add what performance of station is:" << "\n";
-    std::cout << "Print 'allw' to see all info about workshop" << "\n";
-
     std::cout << "Pirnt '1' to add pipe" << "\n";
     std::cout << "Print '2' to add compression station" << "\n";
     std::cout << "Print '3' to see all objects" << "\n";
@@ -86,8 +155,56 @@ void menu(std::string& InputW)
     std::cout << "Print '7' to save" << "\n";
     std::cout << "Print '8' to upload" << "\n";
     std::cout << "Print '9' to exit" << "\n";
-    std::cin >> InputW;
+    while (true)
+    {
+        std::cin >> InputW;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Oops, that input is invalid.  Please try again.\n";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n');
+
+            return InputW;
+        }
+    }
+
 }
+
+int menu2(int& InputW)
+{
+    std::cout << "Print '1' to change length of pipe" << "\n";
+    std::cout << "Print '2' to change width of pipe" << "\n";
+    std::cout << "Print '3' to see all info about pipe" << "\n";
+
+    std::cout << "Print '4' to add name of station" << "\n";
+    std::cout << "Print '5' to add how much worshops exists" << "\n";
+    std::cout << "Print '6' to add how much workshops are working" << "\n";
+    std::cout << "Print '7' to add what performance of station is" << "\n";
+    std::cout << "Print '8' to see all info about workshop" << "\n";
+    std::cout << "Print '9' to exit" << "\n";
+    while (true)
+    {
+        std::cin >> InputW;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Oops, that input is invalid.  Please try again.\n";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n');
+
+            return InputW;
+        }
+    }
+ }
 
 
 void ChangePipeCond(Pipe& My_Pipe)
@@ -96,10 +213,26 @@ void ChangePipeCond(Pipe& My_Pipe)
     std::cout << "Condition of pipe was change" << "\n";
 }
 
-void StartWorkstation(Comp_Station& Station, int& StartW)
+int StartWorkstation(Comp_Station& Station, int& StartW)
 {
     std::cout << Station.working_workshops << " workshop(s) is(are) working now, so you can start " << (Station.number_of_workshops - Station.working_workshops) << "\n" << "How much workshops do you want to start?" << "\n";
-    std::cin >> StartW;
+    while (true)
+    {
+        std::cin >> StartW;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Oops, that input is invalid.  Please try again.\n";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n');
+
+            return StartW;
+        }
+    }
     while (StartW > (Station.number_of_workshops - Station.working_workshops) || StartW < 0) {
         std::cout << "Plz write a right number" << "\n";
         std::cin >> StartW;
@@ -108,10 +241,26 @@ void StartWorkstation(Comp_Station& Station, int& StartW)
     std::cout << Station.working_workshops << " workshop(s) is(are) working now and " << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped" << "\n";
 }
 
-void StopWorkstation(Comp_Station& Station, int& StopW)
+int StopWorkstation(Comp_Station& Station, int& StopW)
 {
     std::cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped, so you can stop " << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
-    std::cin >> StopW;
+    while (true)
+    {
+        std::cin >> StopW;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Oops, that input is invalid.  Please try again.\n";
+        }
+        else
+        {
+            std::cin.ignore(32767, '\n');
+
+            return StopW;
+        }
+    }
     while (StopW > (Station.number_of_workshops - (Station.number_of_workshops - Station.working_workshops)) || StopW < 0) {
         std::cout << "Plz write a right number" << "\n";
         std::cin >> StopW;
@@ -119,6 +268,7 @@ void StopWorkstation(Comp_Station& Station, int& StopW)
     Station.working_workshops = Station.working_workshops - StopW;
     std::cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped and " << Station.working_workshops << " workshop(s) is(are) working now" << "\n";
 }
+
 
 void Save(Comp_Station& Station, Pipe& My_Pipe)
 {
@@ -167,64 +317,66 @@ int main()
     Comp_Station Station;
     Station.id = 0;
 
-    std::string InputW; //команда меню
-    std::string s;
+    int InputW = 0; //команда меню
 
     int StartW = 0;     //запуск доп воркшопс
     int StopW = 0;      //остановка части воркшопс
 
     
     while (1) {
-        menu(InputW);
-        if (InputW == "lp") {
-            AddLength(My_Pipe);
+        menu1(InputW);
+        if (InputW == 1) {
+            while (1) {
+                menu2(InputW);
+                if (InputW == 1) {
+                    AddLength(My_Pipe);
+                }
+                if (InputW == 2) {
+                    AddWidth(My_Pipe);
+                }
+                if (InputW == 3) {
+                    OutputPipe(My_Pipe);
+                }
+                if (InputW == 4) {
+                    NameStation(Station);
+                }
+                if (InputW == 5) {
+                    AllWorkshops(Station);
+                }
+                if (InputW == 6) {
+                    WorkingWorkshops(Station);
+                }
+                if (InputW == 7) {
+                    Performance(Station);
+                }
+                if (InputW == 8) {
+                    OutputStation(Station);
+                }
+                if (InputW == 9) return 0;
+            }
         }
-        if (InputW == "wp") {
-            AddWidth(My_Pipe);
-        }
-        if (InputW == "allp") {
-            OutputPipe(My_Pipe);
-        }
-        if (InputW == "as") {
-            NameStation(Station);
-        }
-        if (InputW == "aw") {
-            AllWorkshops(Station);
-        }
-        if (InputW == "ww") {
-            WorkingWorkshops(Station);
-        }
-        if (InputW == "p") {
-            Performance(Station);
-        }
-        if (InputW == "allw") {
-            OutputStation(Station);
-        }
-        if (InputW == "1") {
-            
-        }
-        if (InputW == "2") {
+        if (InputW == 2) {
 
         }
-        if (InputW == "3") {
+        if (InputW == 3) {
 
         }
-        if (InputW == "4") {
+        if (InputW == 4) {
             ChangePipeCond(My_Pipe);
         }
-        if (InputW == "5") {
+        if (InputW == 5) {
             StartWorkstation(Station, StartW);
         }
-        if (InputW == "6") {
+        if (InputW == 6) {
             StopWorkstation(Station, StopW);
         }
-        if (InputW == "7") {
+        if (InputW == 7) {
             Save(Station, My_Pipe);
         }
-        if (InputW == "8") {
+        if (InputW == 8) {
             Upload();
         }
-        if (InputW == "9") return 0;
+        if (InputW == 9) return 0;
     }
     return 0;
 }
