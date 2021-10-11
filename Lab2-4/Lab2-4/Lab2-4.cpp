@@ -11,15 +11,19 @@
 
 
 
-void InputPipe(Pipe& My_Pipe)
+void AddLength(Pipe& My_Pipe)
 {
-    std::cout << "Enter what length of pipe do you want:" << "\n";
+    std::cout << "Print length:" << "\n";
     std::cin >> My_Pipe.length;
-    std::cout << "Enter what width of pipe do you want:" << "\n";
+}
+
+void AddWidth(Pipe& My_Pipe)
+{
+    std::cout << "Print width" << "\n";
     std::cin >> My_Pipe.width;
 }
 
-void OutputPipe(Pipe My_Pipe)
+void OutputPipe(const Pipe& My_Pipe)
 {
     std::cout << "pipe's id " << My_Pipe.id << "\n";
     std::cout << "pipe's length " << My_Pipe.length << "\n";
@@ -27,19 +31,29 @@ void OutputPipe(Pipe My_Pipe)
     std::cout << "Pipes under repair: " << My_Pipe.under_repair << "\n";
 }
 
-void InputStation(Comp_Station& Station)
+
+
+void NameStation(Comp_Station& Station)
 {
-    std::cout << "Enter what name of Station do you want:" << "\n";
     std::cin >> Station.name;
-    std::cout << "Enter how much workshops do you want for compression station:" << "\n";
+}
+
+void AllWorkshops(Comp_Station& Station)
+{
     std::cin >> Station.number_of_workshops;
-    std::cout << "Enter how much workshops are working:" << "\n";
+}
+
+void WorkingWorkshops(Comp_Station& Station)
+{
     std::cin >> Station.working_workshops;
-    std::cout << "Enter what performance of Station do you want:" << "\n";
+}
+
+void Performance(Comp_Station& Station)
+{
     std::cin >> Station.performance;
 }
 
-void OutputStation(Comp_Station& Station)
+void OutputStation(const Comp_Station& Station)
 {
     std::cout << "station's id: " << Station.id << "\n";
     std::cout << "station's name: " << Station.name << "\n";
@@ -49,34 +63,40 @@ void OutputStation(Comp_Station& Station)
     std::cout << "station's stopped workshops: " << (Station.number_of_workshops - Station.working_workshops) << "\n";
 }
 
-void f(std::string& InputW)
+
+
+void menu(std::string& InputW)
 {
-    std::cout << "Pirnt '1' if you want to add pipe" << "\n";
-    std::cout << "Print '2' if you want to add compression station" << "\n";
-    std::cout << "Print '3' if you want to see all objects" << "\n";
-    std::cout << "Print '4' if you want to change pipe" << "\n";
-    std::cout << "Print '5' if you want to start some workshops" << "\n";
-    std::cout << "Print '6' if you want to stop some workshops" << "\n";
-    std::cout << "Print '7' if you want to save" << "\n";
-    std::cout << "Print '8' if you want to upload" << "\n";
-    std::cout << "Print '9' if you want to exit" << "\n";
+    std::cout << "Print 'lp' to change length of pipe: " << "\n";
+    std::cout << "Print 'wp' to change width of pipe:" << "\n";
+    std::cout << "Print 'allp' to see all info about pipe" << "\n";
+
+    std::cout << "Print 'as' to add name of station:" << "\n";
+    std::cout << "Print 'aw' to add how much worshops exists:" << "\n";
+    std::cout << "Print 'ww' to add how much workshops are working:" << "\n";
+    std::cout << "Print 'p' to add what performance of station is:" << "\n";
+    std::cout << "Print 'allw' to see all info about workshop" << "\n";
+
+    std::cout << "Pirnt '1' to add pipe" << "\n";
+    std::cout << "Print '2' to add compression station" << "\n";
+    std::cout << "Print '3' to see all objects" << "\n";
+    std::cout << "Print '4' to change pipe" << "\n";
+    std::cout << "Print '5' to start some workshops" << "\n";
+    std::cout << "Print '6' to stop some workshops" << "\n";
+    std::cout << "Print '7' to save" << "\n";
+    std::cout << "Print '8' to upload" << "\n";
+    std::cout << "Print '9' to exit" << "\n";
     std::cin >> InputW;
 }
 
-void f4(Pipe& My_Pipe, std::string& s)
+
+void ChangePipeCond(Pipe& My_Pipe)
 {
-    if (My_Pipe.under_repair == false) {
-        My_Pipe.under_repair = true;
-        s = "under_repair";
-    }
-    else {
-        My_Pipe.under_repair = false;
-        s = "is_working";
-    }
-    std::cout << "Condition of pipe was change" << s << "\n";
+    My_Pipe.under_repair = !My_Pipe.under_repair;
+    std::cout << "Condition of pipe was change" << "\n";
 }
 
-void f5(Comp_Station& Station, int& StartW)
+void StartWorkstation(Comp_Station& Station, int& StartW)
 {
     std::cout << Station.working_workshops << " workshop(s) is(are) working now, so you can start " << (Station.number_of_workshops - Station.working_workshops) << "\n" << "How much workshops do you want to start?" << "\n";
     std::cin >> StartW;
@@ -88,7 +108,7 @@ void f5(Comp_Station& Station, int& StartW)
     std::cout << Station.working_workshops << " workshop(s) is(are) working now and " << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped" << "\n";
 }
 
-void f6(Comp_Station& Station, int& StopW)
+void StopWorkstation(Comp_Station& Station, int& StopW)
 {
     std::cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped, so you can stop " << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
     std::cin >> StopW;
@@ -100,7 +120,7 @@ void f6(Comp_Station& Station, int& StopW)
     std::cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped and " << Station.working_workshops << " workshop(s) is(are) working now" << "\n";
 }
 
-void f7(Comp_Station& Station, Pipe& My_Pipe)
+void Save(Comp_Station& Station, Pipe& My_Pipe)
 {
     std::ofstream out;          // поток для записи
     out.open("C:\\Users\\ilya-\\Documents\\GitHub\\Pipes\\Gas_Pipes.txt");
@@ -122,7 +142,7 @@ void f7(Comp_Station& Station, Pipe& My_Pipe)
     std::cout << "Pipes and Comp_Stations were save" << "\n";
 }
 
-void f8()
+void Upload()
 {
     std::string line;
 
@@ -153,13 +173,33 @@ int main()
     int StartW = 0;     //запуск доп воркшопс
     int StopW = 0;      //остановка части воркшопс
 
-    InputPipe(My_Pipe);
-    OutputPipe(My_Pipe);
-    InputStation(Station);
-    OutputStation(Station);
     
     while (1) {
-        f(InputW);
+        menu(InputW);
+        if (InputW == "lp") {
+            AddLength(My_Pipe);
+        }
+        if (InputW == "wp") {
+            AddWidth(My_Pipe);
+        }
+        if (InputW == "allp") {
+            OutputPipe(My_Pipe);
+        }
+        if (InputW == "as") {
+            NameStation(Station);
+        }
+        if (InputW == "aw") {
+            AllWorkshops(Station);
+        }
+        if (InputW == "ww") {
+            WorkingWorkshops(Station);
+        }
+        if (InputW == "p") {
+            Performance(Station);
+        }
+        if (InputW == "allw") {
+            OutputStation(Station);
+        }
         if (InputW == "1") {
             
         }
@@ -170,20 +210,19 @@ int main()
 
         }
         if (InputW == "4") {
-            f4(My_Pipe, s);
+            ChangePipeCond(My_Pipe);
         }
         if (InputW == "5") {
-            f5(Station, StartW);
+            StartWorkstation(Station, StartW);
         }
         if (InputW == "6") {
-            f6(Station, StopW);
-            
+            StopWorkstation(Station, StopW);
         }
         if (InputW == "7") {
-            f7(Station, My_Pipe);
+            Save(Station, My_Pipe);
         }
         if (InputW == "8") {
-            f8();
+            Upload();
         }
         if (InputW == "9") return 0;
     }

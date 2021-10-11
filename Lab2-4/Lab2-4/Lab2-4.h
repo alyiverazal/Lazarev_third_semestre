@@ -13,22 +13,31 @@ struct Comp_Station {
     int working_workshops;
     int performance;
 };
-void OutputPipe(Pipe My_Pipe);
 
-void InputPipe(Pipe& My_Pipe);
+void AddLength(Pipe& My_Pipe);
 
-void InputStation(Comp_Station& Station);
+void AddWidth(Pipe& My_Pipe);
 
-void OutputStation(Comp_Station& Station);
+void OutputPipe(const Pipe& My_Pipe);
 
-void f(std::string& InputW);
+void NameStation(Comp_Station& Station);
 
-void f8();
+void AllWorkshops(Comp_Station& Station);
 
-void f7(Comp_Station& Station, Pipe& My_Pipe);
+void WorkingWorkshops(Comp_Station& Station);
 
-void f6(Comp_Station& Station, int& StopW);
+void Performance(Comp_Station& Station);
 
-void f5(Comp_Station& Station, int& StartW);
+void OutputStation(const Comp_Station& Station);
 
-void f4(Pipe& My_Pipe, std::string& s);
+void menu(std::string& InputW);
+
+void Upload();
+
+void Save(const Comp_Station& Station, Pipe& My_Pipe);
+
+void StopWorkstation(Comp_Station& Station, int& StopW);
+
+void StartWorkstation(Comp_Station& Station, int& StartW);
+
+void ChangePipeCond(Pipe& My_Pipe);
