@@ -1,0 +1,10 @@
+station's id: 0
+station's name: 43g
+station's number of workshops: 14
+station's performance: 24
+station's working workshops: 2
+station's stopped workshops: 12
+pipe's id 0
+pipe's length 43
+pipe's width 3
+pipes under repair: 0

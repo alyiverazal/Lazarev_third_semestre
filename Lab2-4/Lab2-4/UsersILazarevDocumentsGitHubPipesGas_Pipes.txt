@@ -1,0 +1,10 @@
+station's id: 0
+station's name: fdg
+station's number of workshops: 24
+station's performance: 434
+station's working workshops: 2
+station's stopped workshops: 22
+pipe's id 0
+pipe's length 354
+pipe's width 34
+pipes under repair: 0

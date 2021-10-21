@@ -14,6 +14,8 @@ struct Comp_Station {
     int performance;
 };
 
+int Proverochka(int& p);
+
 int AddLength(Pipe& My_Pipe);
 
 double AddWidth(Pipe& My_Pipe);
@@ -40,6 +42,8 @@ int StartWorkstation(Comp_Station& Station, int& StartW);
 
 void ChangePipeCond(Pipe& My_Pipe);
 
+void AddPipe(Pipe& My_Pipe);
+
 void Save(const Comp_Station& Station, Pipe& My_Pipe);
 
-void Upload();
+void Upload(Comp_Station& Station, Pipe& My_Pipe);
