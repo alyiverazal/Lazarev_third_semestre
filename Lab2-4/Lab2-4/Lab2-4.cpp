@@ -5,16 +5,19 @@
 #include "Lab2-4.h"
 #include <fstream>
 #include <string>
+#include <vector>
+#include "unordered_map"
 
 //std::cout << "" << "\n";
 //std::cin >> ;
 
 
-int Proverochka(int& p)
+int Proverochka()
 {
     while (true)
     {
-
+        int a;
+        std::cin >> a;
         if (std::cin.fail())
         {
             std::cin.clear();
@@ -25,7 +28,7 @@ int Proverochka(int& p)
         {
             std::cin.ignore(32767, '\n');
 
-            return p;
+            return a;
         }
     }
 }
@@ -34,7 +37,8 @@ int AddLength(Pipe& My_Pipe)
 {
     std::cout << "Print length of pipe:" << "\n";
     std::cin >> My_Pipe.length;
-    return Proverochka(My_Pipe.length);
+    My_Pipe.length = Proverochka();
+    return My_Pipe.length;
 }
 
 double AddWidth(Pipe& My_Pipe)
@@ -90,21 +94,24 @@ int AllWorkshops(Comp_Station& Station)
 {
     std::cout << "Print number of workshops:" << "\n";
     std::cin >> Station.number_of_workshops;
-    return Proverochka(Station.number_of_workshops);
+    Station.number_of_workshops = Proverochka();
+    return Station.number_of_workshops;
 }
 
 int WorkingWorkshops(Comp_Station& Station)
 {
     std::cout << "Print working workshops:" << "\n";
     std::cin >> Station.working_workshops;
-    return Proverochka(Station.working_workshops);
+    Station.working_workshops = Proverochka();
+    return Station.working_workshops;
 }
 
 int Performance(Comp_Station& Station)
 {
     std::cout << "Print performance:" << "\n";
     std::cin >> Station.performance;
-    return Proverochka(Station.performance);
+    Station.performance = Proverochka();
+    return Station.performance;
 }
 
 void OutputStation(const Comp_Station& Station)
@@ -120,7 +127,9 @@ void OutputStation(const Comp_Station& Station)
 int StartWorkstation(Comp_Station& Station, int& StartW)
 {
     std::cout << Station.working_workshops << " workshop(s) is(are) working now, so you can start " << (Station.number_of_workshops - Station.working_workshops) << "\n" << "How much workshops do you want to start?" << "\n";
-    return Proverochka(StartW);
+    StartW = Proverochka();
+    return StartW;
+    return 1;
     while (StartW > (Station.number_of_workshops - Station.working_workshops) || StartW < 0) {
         std::cout << "Plz write a right number" << "\n";
         std::cin >> StartW;
@@ -132,7 +141,9 @@ int StartWorkstation(Comp_Station& Station, int& StartW)
 int StopWorkstation(Comp_Station& Station, int& StopW)
 {
     std::cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped, so you can stop " << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
-    return Proverochka(StopW);
+    StopW = Proverochka();
+    return StopW;
+    return 1;
     while (StopW > (Station.number_of_workshops - (Station.number_of_workshops - Station.working_workshops)) || StopW < 0) {
         std::cout << "Plz write a right number" << "\n";
         std::cin >> StopW;
@@ -162,7 +173,9 @@ int menu1(int& InputW)
     std::cout << "Print '7' to save" << "\n";
     std::cout << "Print '8' to upload" << "\n";
     std::cout << "Print '9' to exit" << "\n";
-    return Proverochka(InputW);
+    //InputW = Proverochka();
+    //return InputW;
+    return 1;
 }
 
 
@@ -212,7 +225,7 @@ void Upload(Comp_Station& Station, Pipe& My_Pipe)
         }
     }
     in.close();
-    std::cout << "Uploaded" << "\n";
+    std::cout << "Upload" << "\n";
 
 }
 
@@ -234,12 +247,12 @@ int main()
     Station.working_workshops = 0;
 
     int InputW = 0; //команда меню
-    int p = 0;
 
     int StartW = 0;     //запуск доп воркшопс
     int StopW = 0;      //остановка части воркшопс
 
-    
+    std::cout << "Enter any number";
+    std::cin >> InputW;
     while (1) {
         menu1(InputW);
         std::cin >> InputW;

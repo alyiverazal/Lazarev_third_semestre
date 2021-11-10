@@ -14,7 +14,7 @@ struct Comp_Station {
     int performance;
 };
 
-int Proverochka(int& p);
+int Proverochka();
 
 int AddLength(Pipe& My_Pipe);
 
