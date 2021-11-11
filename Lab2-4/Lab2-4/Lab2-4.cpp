@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include "unordered_map"
+using namespace std;
 
 //std::cout << "" << "\n";
 //std::cin >> ;
@@ -17,16 +18,16 @@ int Proverochka()
     while (true)
     {
         int a;
-        std::cin >> a;
-        if (std::cin.fail())
+        cin >> a;
+        if (cin.fail())
         {
-            std::cin.clear();
-            std::cin.ignore(32767, '\n');
-            std::cout << "Oops, that input is invalid.  Please try again.\n";
+            cin.clear();
+            cin.ignore(32767, '\n');
+            cout << "Oops, that input is invalid.  Please try again.\n";
         }
         else
         {
-            std::cin.ignore(32767, '\n');
+            cin.ignore(32767, '\n');
 
             return a;
         }
@@ -35,28 +36,27 @@ int Proverochka()
 
 int AddLength(Pipe& My_Pipe)
 {
-    std::cout << "Print length of pipe:" << "\n";
-    std::cin >> My_Pipe.length;
+    cout << "Print length of pipe:" << "\n";
     My_Pipe.length = Proverochka();
     return My_Pipe.length;
 }
 
 double AddWidth(Pipe& My_Pipe)
 {
-    std::cout << "Print width of pipe:" << "\n";
+    cout << "Print width of pipe:" << "\n";
     while (true)
     {
-        std::cin >> My_Pipe.width;
+        cin >> My_Pipe.width;
 
-        if (std::cin.fail()) 
+        if (cin.fail()) 
         {
-            std::cin.clear();
-            std::cin.ignore(32767, '\n');
-            std::cout << "Oops, that input is invalid.  Please try again.\n";
+            cin.clear();
+            cin.ignore(32767, '\n');
+            cout << "Oops, that input is invalid.  Please try again.\n";
         }
         else
         {
-            std::cin.ignore(32767, '\n');
+            cin.ignore(32767, '\n');
 
             return My_Pipe.width;
         }
@@ -65,16 +65,16 @@ double AddWidth(Pipe& My_Pipe)
 
 void OutputPipe(const Pipe& My_Pipe)
 {
-    std::cout << "pipe's id " << My_Pipe.id << "\n";
-    std::cout << "pipe's length " << My_Pipe.length << "\n";
-    std::cout << "pipe's width " << My_Pipe.width << "\n";
-    std::cout << "Pipes under repair: " << My_Pipe.under_repair << "\n";
+    cout << "pipe's id " << My_Pipe.id << "\n";
+    cout << "pipe's length " << My_Pipe.length << "\n";
+    cout << "pipe's width " << My_Pipe.width << "\n";
+    cout << "Pipes under repair: " << My_Pipe.under_repair << "\n";
 }
 
 void ChangePipeCond(Pipe& My_Pipe)
 {
     My_Pipe.under_repair = !My_Pipe.under_repair;
-    std::cout << "Condition of pipe was change" << "\n";
+    cout << "Condition of pipe was change" << "\n";
 }
 
 void AddPipe(Pipe& My_Pipe) {
@@ -86,70 +86,67 @@ void AddPipe(Pipe& My_Pipe) {
 
 void NameStation(Comp_Station& Station)
 {
-    std::cout << "Print name:" << "\n";
-    std::cin >> Station.name;
+    cout << "Print name:" << "\n";
+    cin >> Station.name;
 }
 
 int AllWorkshops(Comp_Station& Station)
 {
-    std::cout << "Print number of workshops:" << "\n";
-    std::cin >> Station.number_of_workshops;
+    cout << "Print number of workshops:" << "\n";
     Station.number_of_workshops = Proverochka();
     return Station.number_of_workshops;
 }
 
 int WorkingWorkshops(Comp_Station& Station)
 {
-    std::cout << "Print working workshops:" << "\n";
-    std::cin >> Station.working_workshops;
+    cout << "Print working workshops:" << "\n";
     Station.working_workshops = Proverochka();
     return Station.working_workshops;
 }
 
 int Performance(Comp_Station& Station)
 {
-    std::cout << "Print performance:" << "\n";
-    std::cin >> Station.performance;
+    cout << "Print performance:" << "\n";
     Station.performance = Proverochka();
     return Station.performance;
 }
 
 void OutputStation(const Comp_Station& Station)
 {
-    std::cout << "station's id: " << Station.id << "\n";
-    std::cout << "station's name: " << Station.name << "\n";
-    std::cout << "station's number of workshops: " << Station.number_of_workshops << "\n";
-    std::cout << "station's performance: " << Station.performance << "\n";
-    std::cout << "station's working workshops: " << Station.working_workshops << "\n";
-    std::cout << "station's stopped workshops: " << (Station.number_of_workshops - Station.working_workshops) << "\n";
+    cout << "station's id: " << Station.id << "\n";
+    cout << "station's name: " << Station.name << "\n";
+    cout << "station's number of workshops: " << Station.number_of_workshops << "\n";
+    cout << "station's performance: " << Station.performance << "\n";
+    cout << "station's working workshops: " << Station.working_workshops << "\n";
+    cout << "station's stopped workshops: " << (Station.number_of_workshops - Station.working_workshops) << "\n";
 }
 
 int StartWorkstation(Comp_Station& Station, int& StartW)
 {
-    std::cout << Station.working_workshops << " workshop(s) is(are) working now, so you can start " << (Station.number_of_workshops - Station.working_workshops) << "\n" << "How much workshops do you want to start?" << "\n";
+    cout << Station.working_workshops << " workshop(s) is(are) working now, so you can start " << (Station.number_of_workshops - Station.working_workshops) << "\n" << "How much workshops do you want to start?" << "\n";
     StartW = Proverochka();
     return StartW;
     return 1;
     while (StartW > (Station.number_of_workshops - Station.working_workshops) || StartW < 0) {
-        std::cout << "Plz write a right number" << "\n";
-        std::cin >> StartW;
+        cout << "Plz write a right number" << "\n";
+        cin >> StartW;
     }
     Station.working_workshops = Station.working_workshops + StartW;
-    std::cout << Station.working_workshops << " workshop(s) is(are) working now and " << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped" << "\n";
+    cout << Station.working_workshops << " workshop(s) is(are) working now and " << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped" << "\n";
 }
 
 int StopWorkstation(Comp_Station& Station, int& StopW)
 {
-    std::cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped, so you can stop " << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
+    cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped, so you can stop " << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
     StopW = Proverochka();
     return StopW;
     return 1;
     while (StopW > (Station.number_of_workshops - (Station.number_of_workshops - Station.working_workshops)) || StopW < 0) {
-        std::cout << "Plz write a right number" << "\n";
-        std::cin >> StopW;
+        cout << "Plz write a right number" << "\n";
+        cin >> StopW;
     }
     Station.working_workshops = Station.working_workshops - StopW;
-    std::cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped and " << Station.working_workshops << " workshop(s) is(are) working now" << "\n";
+    cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped and " << Station.working_workshops << " workshop(s) is(are) working now" << "\n";
 }
 
 void AddStation(Comp_Station& Station) {
@@ -164,24 +161,22 @@ void AddStation(Comp_Station& Station) {
 
 int menu1(int& InputW)
 {
-    std::cout << "Pirnt '1' to add pipe" << "\n";
-    std::cout << "Print '2' to add compression station" << "\n";
-    std::cout << "Print '3' to see all objects" << "\n";
-    std::cout << "Print '4' to change pipe condition" << "\n";
-    std::cout << "Print '5' to start some workshops" << "\n";
-    std::cout << "Print '6' to stop some workshops" << "\n";
-    std::cout << "Print '7' to save" << "\n";
-    std::cout << "Print '8' to upload" << "\n";
-    std::cout << "Print '9' to exit" << "\n";
-    //InputW = Proverochka();
-    //return InputW;
+    cout << "Pirnt '1' to add pipe" << "\n";
+    cout << "Print '2' to add compression station" << "\n";
+    cout << "Print '3' to see all objects" << "\n";
+    cout << "Print '4' to change pipe condition" << "\n";
+    cout << "Print '5' to start some workshops" << "\n";
+    cout << "Print '6' to stop some workshops" << "\n";
+    cout << "Print '7' to save" << "\n";
+    cout << "Print '8' to upload" << "\n";
+    cout << "Print '9' to exit" << "\n";
     return 1;
 }
 
 
 void Save(Comp_Station& Station, Pipe& My_Pipe)
 {
-    std::ofstream out;          // поток для записи
+    ofstream out;          // поток для записи
     out.open("C:\\Users\\ILazarev\\Documents\\GitHub\\Lazarev_third_semestre\\Gas_Pipes.txt");
     if (out.is_open())
     {
@@ -191,17 +186,17 @@ void Save(Comp_Station& Station, Pipe& My_Pipe)
         out << "Station: " << "\n" << (Station.number_of_workshops - Station.working_workshops) << "\n" << Station.id << "\n" << Station.name << "\n" << Station.number_of_workshops << "\n" << Station.performance << "\n" << Station.working_workshops << "\n";
     }
     else {
-        std::cout << "Appier some problems" << "\n";
+        cout << "Appier some problems" << "\n";
     }
-    std::cout << "Save" << "\n";
+    cout << "Save" << "\n";
 }
 
 void Upload(Comp_Station& Station, Pipe& My_Pipe)
 {
-    std::ifstream in("C:\\Users\\ILazarev\\Documents\\GitHub\\Lazarev_third_semestre\\Gas_Pipes.txt"); // поток для чтения
-    std::string line;
-    std::string m = "Pipe: ";
-    std::string k = "Station: ";
+    ifstream in("C:\\Users\\ILazarev\\Documents\\GitHub\\Lazarev_third_semestre\\Gas_Pipes.txt"); // поток для чтения
+    string line;
+    string m = "Pipe: ";
+    string k = "Station: ";
 
     if (in.is_open())
     {
@@ -225,7 +220,7 @@ void Upload(Comp_Station& Station, Pipe& My_Pipe)
         }
     }
     in.close();
-    std::cout << "Upload" << "\n";
+    cout << "Upload" << "\n";
 
 }
 
@@ -251,8 +246,8 @@ int main()
     int StartW = 0;     //запуск доп воркшопс
     int StopW = 0;      //остановка части воркшопс
 
-    std::cout << "Enter any number";
-    std::cin >> InputW;
+    cout << "Enter any number";
+    cin >> InputW;
     while (1) {
         menu1(InputW);
         std::cin >> InputW;
