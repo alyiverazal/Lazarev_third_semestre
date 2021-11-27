@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include "Lab2-4.h"
+#include "Pipe.h"
+#include "Pipe.cpp"
+#include "Comp_Station.h"
+#include "Comp_Station.cpp"
 #include <fstream>
 #include <string>
 #include <vector>
@@ -15,170 +19,8 @@ using namespace std;
 //std::cin >> ;
 
 
-int Proverochka()
-{
-    while (true)
-    {
-        int a;
-        cin >> a;
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore(32767, '\n');
-            cout << "Oops, that input is invalid.  Please try again.\n";
-        }
-        else
-        {
-            cin.ignore(32767, '\n');
-
-            return a;
-        }
-    }
-}
-
-int AddLength(Pipe& My_Pipe)
-{
-    cout << "Print length of pipe:" << "\n";
-    My_Pipe.length = Proverochka();
-    return My_Pipe.length;
-}
-
-double AddWidth(Pipe& My_Pipe)
-{
-    cout << "Print width of pipe:" << "\n";
-    while (true)
-    {
-        cin >> My_Pipe.width;
-
-        if (cin.fail()) 
-        {
-            cin.clear();
-            cin.ignore(32767, '\n');
-            cout << "Oops, that input is invalid.  Please try again.\n";
-        }
-        else
-        {
-            cin.ignore(32767, '\n');
-
-            return My_Pipe.width;
-        }
-    }
-}
-
-void OutputPipe(const Pipe& My_Pipe)
-{
-    cout << "pipe's id " << My_Pipe.id << "\n";
-    cout << "pipe's length " << My_Pipe.length << "\n";
-    cout << "pipe's width " << My_Pipe.width << "\n";
-    cout << "Pipes under repair: " << My_Pipe.under_repair << "\n";
-}
-
-std::ostream& operator << (std::ostream& out, Pipe& My_Pipe)
-{
-    out << "pipe's id " << My_Pipe.id << "\n" << "pipe's length " << My_Pipe.length << "\n" << "pipe's width " << My_Pipe.width << "\n" << "Pipes under repair: " << My_Pipe.under_repair << "\n";
-
-    return out;
-}
-
-void ChangePipeCond(Pipe& My_Pipe)
-{
-    My_Pipe.under_repair = !My_Pipe.under_repair;
-    cout << "Condition of pipe was change" << "\n";
-}
 
 
-void AddPipe(Pipe& My_Pipe) {
-
-    My_Pipe.id = ++My_Pipe.MaxID;
-
-    AddLength(My_Pipe);
-    AddWidth(My_Pipe);
-    OutputPipe(My_Pipe);
-}
-
-
-void NameStation(Comp_Station& Station)
-{
-    cout << "Print name:" << "\n";
-    cin >> Station.name;
-}
-
-int AllWorkshops(Comp_Station& Station)
-{
-    cout << "Print number of workshops:" << "\n";
-    Station.number_of_workshops = Proverochka();
-    return Station.number_of_workshops;
-}
-
-int WorkingWorkshops(Comp_Station& Station)
-{
-    cout << "Print working workshops:" << "\n";
-    Station.working_workshops = Proverochka();
-    return Station.working_workshops;
-}
-
-int Performance(Comp_Station& Station)
-{
-    cout << "Print performance:" << "\n";
-    Station.performance = Proverochka();
-    return Station.performance;
-}
-
-void OutputStation(const Comp_Station& Station)
-{
-    cout << "station's id: " << Station.id << "\n";
-    cout << "station's name: " << Station.name << "\n";
-    cout << "station's number of workshops: " << Station.number_of_workshops << "\n";
-    cout << "station's performance: " << Station.performance << "\n";
-    cout << "station's working workshops: " << Station.working_workshops << "\n";
-    cout << "station's stopped workshops: " << (Station.number_of_workshops - Station.working_workshops) << "\n";
-}
-
-std::ostream& operator << (std::ostream& out, Comp_Station& Station)
-{
-    out << "station's id: " << Station.id << "\n" << "station's name: " << Station.name << "\n" << "station's number of workshops: " << Station.number_of_workshops << "\n" << "station's performance: " << Station.performance << "\n" << "station's working workshops: " << Station.working_workshops << "\n" << "station's stopped workshops: " << (Station.number_of_workshops - Station.working_workshops) << "\n";
-
-    return out;
-}
-
-int StartWorkstation(Comp_Station& Station, int& StartW)
-{
-    cout << Station.working_workshops << " workshop(s) is(are) working now, so you can start " << (Station.number_of_workshops - Station.working_workshops) << "\n" << "How much workshops do you want to start?" << "\n";
-    StartW = Proverochka();
-    return StartW;
-    return 1;
-    while (StartW > (Station.number_of_workshops - Station.working_workshops) || StartW < 0) {
-        cout << "Plz write a right number" << "\n";
-        cin >> StartW;
-    }
-    Station.working_workshops = Station.working_workshops + StartW;
-    cout << Station.working_workshops << " workshop(s) is(are) working now and " << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped" << "\n";
-}
-
-int StopWorkstation(Comp_Station& Station, int& StopW)
-{
-    cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped, so you can stop " << Station.working_workshops << "\n" << "How much workshops do you want to stop?" << "\n";
-    StopW = Proverochka();
-    return StopW;
-    return 1;
-    while (StopW > (Station.number_of_workshops - (Station.number_of_workshops - Station.working_workshops)) || StopW < 0) {
-        cout << "Plz write a right number" << "\n";
-        cin >> StopW;
-    }
-    Station.working_workshops = Station.working_workshops - StopW;
-    cout << (Station.number_of_workshops - Station.working_workshops) << " workshop(s) was(were) stopped and " << Station.working_workshops << " workshop(s) is(are) working now" << "\n";
-}
-
-void AddStation(Comp_Station& Station) {
-
-    Station.id = ++Station.MaxID;
-
-    NameStation(Station);
-    AllWorkshops(Station);
-    WorkingWorkshops(Station);
-    Performance(Station);
-    OutputStation(Station);
-}
 
 
 void menu()
@@ -194,7 +36,7 @@ void menu()
     cout << "Print '9' to exit" << "\n";
     cout << "Print '10' to search by filter 'repair'" << endl;
     cout << "Print '11' to search by unworking workshops" << endl;
-    cout << "Print '12' to search by name of workshop" << endl;
+    cout << "Print '12' to search by name" << endl;
     cout << "Print '13' to delete pipe" << endl;
     cout << "Print '14' to delete workshop" << endl;
     cout << "Print '15' to use package batch editing" << endl;
@@ -203,6 +45,7 @@ void menu()
 }
 
 
+/*
 void Save(Comp_Station& Station, Pipe& My_Pipe)
 {
     ofstream out;          // поток дл€ записи
@@ -217,7 +60,7 @@ void Save(Comp_Station& Station, Pipe& My_Pipe)
     else {
         cout << "Appier some problems" << "\n";
     }
-    cout << "Save" << "\n";
+    cout << "Saved" << "\n";
 }
 
 void Upload(Comp_Station& Station, Pipe& My_Pipe)
@@ -234,10 +77,10 @@ void Upload(Comp_Station& Station, Pipe& My_Pipe)
             bool PIn = (line == m);
             bool SIn = (line == k);
             if (PIn) {
-                in >> My_Pipe.id;
-                in >> My_Pipe.length;
-                in >> My_Pipe.width;
-                in >> My_Pipe.under_repair;
+                in >> My_Pipe.GetId;
+                in >> My_Pipe.GetLength;
+                in >> My_Pipe.GetWidth;
+                in >> My_Pipe.GetUnder_repair;
             }
             if (SIn) {
                 in >> Station.id;
@@ -249,9 +92,10 @@ void Upload(Comp_Station& Station, Pipe& My_Pipe)
         }
     }
     in.close();
-    cout << "Upload" << "\n";
+    cout << "Uploaded" << "\n";
 
 }
+*/
 
 
 
@@ -259,22 +103,9 @@ void Upload(Comp_Station& Station, Pipe& My_Pipe)
 
 int main()
 {
-    Pipe My_Pipe;
-    My_Pipe.id = 0;
-    My_Pipe.under_repair = false;
-    My_Pipe.length = 0;
-    My_Pipe.width = 0;
-    My_Pipe.MaxID = 0;
 
-    Comp_Station Station;
-    Station.id = 0;
-    Station.name = "";
-    Station.number_of_workshops = 0;
-    Station.performance = 0;
-    Station.working_workshops = 0;
-    Station.MaxID = 0;
 
-    int InputW = 0; //команда меню
+    int InputW = 0;     //команда меню
 
     int StartW = 0;     //запуск доп воркшопс
     int StopW = 0;      //остановка части воркшопс
@@ -284,14 +115,16 @@ int main()
 
     while (1) {
         menu();
-        InputW = Proverochka();
+        InputW = Proverochka(0, 15);
         if (InputW == 1) {
-            AddPipe(My_Pipe);
-            pipe_map.insert(pair<int, Pipe>(My_Pipe.MaxID, My_Pipe));
+            Pipe My_Pipe;
+            cin >> My_Pipe;
+            pipe_map.insert(pair<int, Pipe>(My_Pipe.GetId(), My_Pipe));
         }
         if (InputW == 2) {
-            AddStation(Station);
-            cs_map.insert(pair<int, Comp_Station>(Station.MaxID, Station));
+            Comp_Station Station;
+            cin >> Station;
+            cs_map.insert(pair<int, Comp_Station>(Station.GetId(), Station));
         }
         if (InputW == 3) {
             if (pipe_map.size() > 0)
@@ -309,19 +142,28 @@ int main()
                 }
         }
         if (InputW == 4) {
-            ChangePipeCond(My_Pipe);
+            //unordered_map <int, Pipe>::iterator number;
+            //cout << "¬ведите ID трубы: ";
+            //if (pipe_map.size() > 0)
+            {
+               // unsigned index = Proverochka(1u, Pipe::MaxID, "¬ведите ID трубы: ");
+               // number = pipe_map.find(index);
+               // number->second.editing_pipe();
+            }
+
+           // ChangePipeCond(My_Pipe);
         }
         if (InputW == 5) {
-            StartWorkstation(Station, StartW);
+           // StartWorkstation(Station, StartW);
         }
         if (InputW == 6) {
-            StopWorkstation(Station, StopW);
+           // StopWorkstation(Station, StopW);
         }
         if (InputW == 7) {
-            Save(Station, My_Pipe);
+           // Save(Station, My_Pipe);
         }
         if (InputW == 8) {
-            Upload(Station, My_Pipe);
+           // Upload(Station, My_Pipe);
         }
         if (InputW == 9) {
 
@@ -346,9 +188,6 @@ int main()
         }
         if (InputW == 0) {
             return 0;
-        }
-        else {
-            cout << "Invalid input, try again" << endl;
         }
     }
     return 0;
