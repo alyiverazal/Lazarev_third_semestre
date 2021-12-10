@@ -15,20 +15,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lab2-4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Pipe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Comp_Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Lab2-4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lab2-4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Pipe.h">
       <Filter>Header Files</Filter>
     </ClInclude>

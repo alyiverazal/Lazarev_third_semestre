@@ -146,7 +146,6 @@
   <ItemGroup>
     <ClInclude Include="Comp_Station.h" />
     <ClInclude Include="Dops.h" />
-    <ClInclude Include="Lab2-4.h" />
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
