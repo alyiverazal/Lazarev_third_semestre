@@ -7,6 +7,8 @@ unsigned int Pipe::MaxId = 0;
 Pipe::Pipe() 
 {
     id = ++MaxId;
+    id_cs_in = 0;
+    id_cs_out = 0;
 }
 
 int Pipe::GetId() 
@@ -34,10 +36,41 @@ double Pipe::GetWidth()
     return width;
 }
 
+int Pipe::GetPerformance() const
+{
+    return (int)sqrt(pow(width, 5) / length);
+}
+
 void Pipe::EditingPipe()
 {
     under_repair = !under_repair;
     cout << "Successful editing to " << under_repair << endl;
+}
+
+int Pipe::GetId_CS_In()
+{
+    return id_cs_in;
+}
+
+int Pipe::GetId_CS_Out()
+{
+    return id_cs_out;
+}
+
+void Pipe::SetId_CS_Out(int id_cs_out)
+{
+    this->id_cs_out = id_cs_out;
+}
+
+void Pipe::SetId_CS_In(int id_cs_in)
+{
+    this->id_cs_in = id_cs_in;
+}
+
+void Pipe::in_Pipe_out(int cs_out, int cs_in)
+{
+    id_cs_out = cs_out;
+    id_cs_in = cs_in;
 }
 
 ostream& operator << (ostream& out, const Pipe& My_Pipe)

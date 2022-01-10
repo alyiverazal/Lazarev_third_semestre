@@ -17,6 +17,14 @@ public:
     bool GetUnder_repair();
     void EditingPipe();
     int GetId();
+    int GetPerformance() const;
+    int id_cs_in;
+    int id_cs_out;
+    int GetId_CS_In();
+    int GetId_CS_Out();
+    void SetId_CS_Out(int id_cs_out);
+    void SetId_CS_In(int id_cs_in);
+    void in_Pipe_out(int cs_out, int cs_in);
 
     friend std::ostream& operator << (std::ostream& out, const Pipe& My_Pipe);
     friend std::istream& operator >> (std::istream& in, Pipe& My_Pipe);

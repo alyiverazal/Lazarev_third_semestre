@@ -1,0 +1,22 @@
+2
+pipe's id 1
+pipe's length 34
+pipe's width 3
+Pipes under repair: 0
+pipe's id 2
+pipe's length 2
+pipe's width 2
+Pipes under repair: 1
+2
+station's id: 1
+station's name: dgfh
+station's number of workshops: 234
+station's performance: 111
+station's working workshops: 34
+station's stopped workshops: 200
+station's id: 2
+station's name: q
+station's number of workshops: 365
+station's performance: 444
+station's working workshops: 45
+station's stopped workshops: 320

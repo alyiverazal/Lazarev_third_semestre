@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Comp_Station.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Lab2-4.cpp" />
     <ClCompile Include="Pipe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Comp_Station.h" />
     <ClInclude Include="Dops.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
